@@ -1,0 +1,4 @@
+br\com\vitorcapovilla\CapovillaPlugins.class
+br\com\vitorcapovilla\Fake\RandomNickname.class
+br\com\vitorcapovilla\Fake\Fake.class
+br\com\vitorcapovilla\listener\CapovillaListener.class

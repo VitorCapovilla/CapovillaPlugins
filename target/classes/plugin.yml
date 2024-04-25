@@ -1,0 +1,11 @@
+name: CapovillaPlugins
+version: '1.0'
+main: br.com.vitorcapovilla.CapovillaPlugins
+api-version: '1.19'
+authors: [Vitor Capovilla]
+
+commands:
+  fake:
+    description: Comando para alterar o nome de exibição.
+    usage: /<command> [restore|random|<novo_nome>]
+    aliases: [ nomefalso, mudarnome ]
