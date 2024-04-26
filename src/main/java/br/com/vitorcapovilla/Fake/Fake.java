@@ -9,6 +9,7 @@ import static br.com.vitorcapovilla.Fake.RandomNickname.generateRandomName;
 
 public class Fake implements CommandExecutor {
 
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!sender.hasPermission("fake.use")){
@@ -28,12 +29,10 @@ public class Fake implements CommandExecutor {
         if (name.isEmpty()){
             p.sendMessage("§1[FakeCapovilla]§r§b Use '/fake help' para mais detalhes!");
         }else if(name.equals("*")){
-            // Caso /fake sem argumentos, voltar ao nick original
             p.setDisplayName(p.getName());
             p.setPlayerListName(p.getName());
             p.sendMessage("§1[FakeCapovilla]§r§b Seu nome foi restaurado para " + p.getName());
         }else if(name.equalsIgnoreCase("random")){
-            // Caso /fake random, usar um nome aleatório
             String randomNickname = generateRandomName();
             p.setDisplayName(randomNickname);
             p.setPlayerListName(randomNickname);
@@ -45,11 +44,24 @@ public class Fake implements CommandExecutor {
             p.sendMessage("§1[FakeCapovilla]§r§b Use /fake * -> para resetar seu nick ao original");
             p.sendMessage("§2---§1[FakeCapovilla HELPER]§2---");
         } else{
-            // Caso /fake com um argumento, usar o nome especificado
-            String newName = name;
-            p.setDisplayName(newName);
-            p.setPlayerListName(newName);
-            p.sendMessage("§1[FakeCapovilla]§r§b Seu nome foi alterado para " + newName);
+            if(name.length() < 4){
+                p.sendMessage("§1[FakeCapovilla]§r§b O nome deve ser maior que 4 caracteres");
+            }else if(name.length() >=21){
+                p.sendMessage("§1[FakeCapovilla]§r§b O nome deve ser menor que 20 caracteres");
+            }else{
+                for (int i = 0; i < name.length(); i++) {
+                    char caractere = name.charAt(i);
+                    if (!Character.isLetterOrDigit(caractere) && !Character.isWhitespace(caractere)) {
+                        p.sendMessage("§1[FakeCapovilla]§r§b Seu nome não pode conter caracteres especiais ou espaços em branco!");
+                        return; // Terminar o método aqui se um caractere inválido for encontrado
+                    }
+                }
+                String newName = name;
+                p.setDisplayName(newName);
+                p.setPlayerListName(newName);
+                p.sendMessage("§1[FakeCapovilla]§r§b Seu nome foi alterado para " + newName);
+            }
+
         }
     }
 }
