@@ -1,5 +1,5 @@
 name: CapovillaPlugins
-version: '1.0'
+version: '1.1.0'
 main: br.com.vitorcapovilla.CapovillaPlugins
 api-version: '1.19'
 authors: [Vitor Capovilla]
